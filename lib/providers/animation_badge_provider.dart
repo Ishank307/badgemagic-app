@@ -219,8 +219,8 @@ class AnimationBadgeProvider extends ChangeNotifier {
     return isActive;
   }
 
-  void badgeAnimation(String message, Converters converters, bool isInverted,
-      {TextStyle? textStyle}) async {
+  void badgeAnimation(
+      String message, Converters converters, bool isInverted) async {
     bool isSpecial = isSpecialAnimationSelected();
     if (message.isEmpty && !isSpecial) {
       stopAllAnimations();
@@ -234,8 +234,7 @@ class AnimationBadgeProvider extends ChangeNotifier {
     if (_timer == null || !_timer!.isActive) {
       startTimer();
     }
-    List<String> hexString = await converters
-        .textToBadgeHex(message, isInverted, fontStyle: textStyle);
+    List<String> hexString = await converters.messageTohex(message, isInverted);
     List<List<bool>> binaryArray = hexStringToBool(hexString.join());
     setNewGrid(binaryArray);
   }
