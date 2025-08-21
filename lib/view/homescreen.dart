@@ -277,7 +277,8 @@ class _HomeScreenState extends State<HomeScreen>
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Container(
-                          padding: EdgeInsets.symmetric(vertical: 20.h),
+                          padding: EdgeInsets.symmetric(
+                              vertical: 8.h), //size adjusted
                           child: Consumer<AnimationBadgeProvider>(
                             builder: (context, animationProvider, _) {
                               final isSpecial = animationProvider
@@ -288,8 +289,8 @@ class _HomeScreenState extends State<HomeScreen>
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Container(
-                                      padding:
-                                          EdgeInsets.symmetric(vertical: 20.h),
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 8.h), //size adjusted
                                       child: GestureDetector(
                                         onTap: () async {
                                           await animationProvider
@@ -329,8 +330,8 @@ class _HomeScreenState extends State<HomeScreen>
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Container(
-                                      padding:
-                                          EdgeInsets.symmetric(vertical: 20.h),
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 8.h), //size adjusted
                                       child: GestureDetector(
                                         onTap: () async {
                                           if (inlineimagecontroller.text
