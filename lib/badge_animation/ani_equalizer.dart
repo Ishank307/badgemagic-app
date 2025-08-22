@@ -14,6 +14,9 @@ class EqualizerAnimation extends BadgeAnimation {
   /// Higher values make the animation more frantic.
   static const double changeChance = 0.7;
 
+  /// The probability that instead of nudging, a bar completely resets to a random height.
+  static const double resetChance = 0.2;
+
   final List<int> _barHeights = [];
   bool _initialized = false;
   final Random _rng = Random();
@@ -44,16 +47,21 @@ class EqualizerAnimation extends BadgeAnimation {
       }
     }
 
-    // calculate the number of bars here
+    // keeing this part of code same
     final int numberOfBars = (badgeWidth + gapWidth) ~/ (barWidth + gapWidth);
 
     for (int i = 0; i < numberOfBars; i++) {
       // Randomly decide whether to change the height of this bar.
       if (_rng.nextDouble() < changeChance) {
-        int heightChange = _rng.nextInt(3) - 1;
-        _barHeights[i] += heightChange;
-
-        _barHeights[i] = _barHeights[i].clamp(1, badgeHeight);
+        if (_rng.nextDouble() < resetChance) {
+          // Occasionally jump to a completely random height
+          _barHeights[i] = _rng.nextInt(badgeHeight) + 1;
+        } else {
+          // Otherwise just wobble by -1, 0, or +1
+          int heightChange = _rng.nextInt(3) - 1;
+          _barHeights[i] =
+              (_barHeights[i] + heightChange).clamp(1, badgeHeight);
+        }
       }
     }
 
